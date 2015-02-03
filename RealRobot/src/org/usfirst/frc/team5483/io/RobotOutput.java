@@ -12,7 +12,8 @@ public class RobotOutput {
 	public DoubleSolenoid armSolenoid;
 	public Talon leftDrive;
 	public Talon rightDrive;
-	private Relay relay1;
+	public Relay relay1;
+	public static boolean extend;
 	//public Talon claw; *just in case we end up using a winch and closing claw system*
 	//public Talon winch;
 	
@@ -25,6 +26,7 @@ public class RobotOutput {
 		this.rightDrive = new Talon(2);
 		this.joystick = new Joystick(1);
 		this.relay1 = new Relay(1);
+		this.setExtend(false);
 	}
 	
 	public static RobotOutput getInstance(){
@@ -32,5 +34,14 @@ public class RobotOutput {
 			RobotOutput.instance = new RobotOutput();
 		}
 		return RobotOutput.instance; 
+	}
+
+	public static boolean getExtend() {
+		return extend;
+	}
+
+	public void setExtend(boolean extend) {
+		RobotOutput.extend = extend;
+		//do nothing
 	}
 }
