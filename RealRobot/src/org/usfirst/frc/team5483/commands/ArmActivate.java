@@ -12,7 +12,6 @@ public class ArmActivate {
 	private static int armActivations = 0;
 	RobotOutput robotOut;
 	Controller controller;
-	//initialize arm, set pneumatic condition to false (retracted)
 	
 	public void armUpdate() {
 		// check condition of pneumatic, then depending on condition, change condition when x is pressed
@@ -20,7 +19,6 @@ public class ArmActivate {
 			robotOut.armSolenoid.set(DoubleSolenoid.Value.kForward);
 			robotOut.setExtend(true);
 			armActivations++;
-			
 		}
 		if(RobotOutput.getExtend() == true && controller.getX()) {
 			robotOut.armSolenoid.set(DoubleSolenoid.Value.kReverse);

@@ -41,7 +41,6 @@ public class Robot extends IterativeRobot {
      while(isOperatorControl() && isEnabled()){ 
     	roboOut.myRobot.setSafetyEnabled(true);
     	roboOut.myRobot.arcadeDrive(roboOut.joystick);
-    	Timer.delay(0.01);
         this.arm.armUpdate();
         
       }
