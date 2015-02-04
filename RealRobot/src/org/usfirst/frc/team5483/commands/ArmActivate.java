@@ -10,14 +10,12 @@ import org.usfirst.frc.team5483.robot.*;
 public class ArmActivate {
 	
 	private static int armActivations = 0;
-	private static RobotOutput robotOut;
-	private static Controller controller;
-	public static void armInit() {
-		robotOut = new RobotOutput();
-	}
+	RobotOutput robotOut;
+	Controller controller;
+	//initialize arm, set pneumatic condition to false (retracted)
 	
-	public static void armUpdate() {
-		
+	public void armUpdate() {
+		// check condition of pneumatic, then depending on condition, change condition when x is pressed
 		if(RobotOutput.getExtend() == false && controller.getX()) {
 			robotOut.armSolenoid.set(DoubleSolenoid.Value.kForward);
 			robotOut.setExtend(true);
@@ -29,20 +27,18 @@ public class ArmActivate {
 			robotOut.setExtend(false);
 			armActivations++;
 		}
-		
-		while(controller.getRB() == true){
+		//simple up and down of winch, might need to invert depending on how it ends up working
+		while(this.controller.getRB() == true){
 			robotOut.relay1.set(Value.kForward);
 		}
 		
-		while(controller.getLB() == true){
+		while(this.controller.getLB() == true){
 			robotOut.relay1.set(Value.kReverse);
 		}
-		
-		if(controller.getB()){
+		//if things go wrong b should disable it
+		if(this.controller.getB()){
 			robotOut.relay1.set(Value.kOff);
 		}
-		
-		if(armActivations == 7000) armActivations = 0;
 	}
 	
 	public static void activationsReset() {

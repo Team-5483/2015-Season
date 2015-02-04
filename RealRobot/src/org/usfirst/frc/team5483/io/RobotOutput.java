@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Talon;
 
 public class RobotOutput {
@@ -14,19 +15,23 @@ public class RobotOutput {
 	public Talon rightDrive;
 	public Relay relay1;
 	public static boolean extend;
+	public RobotDrive myRobot;
+	public Joystick joystick;
 	//public Talon claw; *just in case we end up using a winch and closing claw system*
 	//public Talon winch;
 	
-	public Joystick joystick;
+
 
 	public RobotOutput(){
-		this.armSolenoid = new DoubleSolenoid (3,4);
+		this.armSolenoid = new DoubleSolenoid (0,1);
 		this.compressor = new Compressor(1);
-		this.leftDrive = new Talon(1);
-		this.rightDrive = new Talon(2);
+		this.compressor.start();
+		this.leftDrive = new Talon(0);
+		this.rightDrive = new Talon(1);
 		this.joystick = new Joystick(1);
+		this.myRobot = new RobotDrive(leftDrive,rightDrive);
+		RobotOutput.extend = false;
 		this.relay1 = new Relay(1);
-		this.setExtend(false);
 	}
 	
 	public static RobotOutput getInstance(){
