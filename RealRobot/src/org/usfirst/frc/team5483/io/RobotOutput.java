@@ -20,7 +20,7 @@ public class RobotOutput {
 	public Joystick joystick;
 
 	public RobotOutput(){
-		this.armSolenoid = new DoubleSolenoid (1,2);
+		this.armSolenoid = new DoubleSolenoid (3,4);
 		this.compressor = new Compressor(1);
 		this.leftDrive = new Talon(1);
 		this.rightDrive = new Talon(2);

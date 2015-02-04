@@ -30,11 +30,11 @@ public class ArmActivate {
 			armActivations++;
 		}
 		
-		while(controller.getRB()==true){
+		while(controller.getRB() == true){
 			robotOut.relay1.set(Value.kForward);
 		}
 		
-		while(controller.getLB()== true){
+		while(controller.getLB() == true){
 			robotOut.relay1.set(Value.kReverse);
 		}
 		

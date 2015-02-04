@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -18,7 +19,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 	RobotDrive myRobot;
 	RobotOutput roboOut;
-	int autoLoopCounter;
+	long autoLoopCounter;
+	double time;
 	boolean safeMode = false;
 	
 	public void robotInit() {
@@ -28,16 +30,16 @@ public class Robot extends IterativeRobot {
     }
       
     public void autonomousInit() {
-    	autoLoopCounter = 0;
+    	time = System.currentTimeMillis();
+    	
     }
 
     public void autonomousPeriodic() {
-    	if(autoLoopCounter < 100) { //Check if we've completed 100 loops (approximately 2 seconds)
+    	while(isAutonomous() && isEnabled()){
+    		while( time / 1000 <= 3 ) { //Check if 15 seconds have passed
     		myRobot.drive(-0.5, 0.0); 	// drive forwards half speed
-			autoLoopCounter++;
-		} else {
-			myRobot.drive(0.0, 0.0); 	// stop robot
-		}
+    		}
+    	}
     }
     
     public void teleopInit(){
@@ -45,9 +47,12 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopPeriodic() {
-        if(!safeMode) myRobot.arcadeDrive(roboOut.joystick);
+      while(isOperatorControl() && isEnabled()){ 
+    	myRobot.arcadeDrive(roboOut.joystick);
+    	Timer.delay(0.01);
         ArmActivate.armUpdate();
-    }
+      }
+    } 
     
     public void testPeriodic() {
     	LiveWindow.run();
