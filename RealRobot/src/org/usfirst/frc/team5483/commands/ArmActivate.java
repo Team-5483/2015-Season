@@ -10,7 +10,7 @@ import org.usfirst.frc.team5483.robot.*;
 public class ArmActivate {
 	
 	private static int armActivations = 0;
-	RobotOutput robotOut;
+	RobotOutput robotOut = RobotOutput.getInstance();
 	Controller controller;
 	
 	public void armUpdate() {

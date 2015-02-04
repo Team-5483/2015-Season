@@ -3,7 +3,6 @@ package org.usfirst.frc.team5483.robot;
 import org.usfirst.frc.team5483.commands.ArmActivate;
 import org.usfirst.frc.team5483.io.RobotOutput;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 public class Robot extends IterativeRobot {
@@ -42,7 +41,6 @@ public class Robot extends IterativeRobot {
     	roboOut.myRobot.setSafetyEnabled(true);
     	roboOut.myRobot.arcadeDrive(roboOut.joystick);
         this.arm.armUpdate();
-        
       }
     } 
     

@@ -31,7 +31,7 @@ public class RobotOutput {
 		this.joystick = new Joystick(1);
 		this.myRobot = new RobotDrive(leftDrive,rightDrive);
 		RobotOutput.extend = false;
-		this.relay1 = new Relay(1);
+		this.relay1 = new Relay(0);
 	}
 	
 	public static RobotOutput getInstance(){
