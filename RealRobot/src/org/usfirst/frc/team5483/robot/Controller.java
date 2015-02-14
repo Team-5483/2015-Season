@@ -3,106 +3,55 @@ package org.usfirst.frc.team5483.robot;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class Controller {
-	Joystick joystick;
-	/** Primary Driver Controller Port Number. */
-	private static final int DRIVER_PRIMARY = 1;
-
-	/** Secondary Driver Controller Port Number. */
-	private static final int DRIVER_SECONDARY = 2;
-
-	/** XBOX 360 South Face Button */
-	private static final int BUTTON_A = 1;
-
-	/** XBOX 360 East Face Button */
-	private static final int BUTTON_B = 2;
-
-	/** XBOX 360 West Face Button */
-	private static final int BUTTON_X = 3;
-
-	/** XBOX 360 North Face Button  */
-	private static final int BUTTON_Y = 4;
+	private Joystick joystick;
 	
-	/** XBOX 360 Left Bumper (Top) */
-	private static final int BUTTON_LB = 5;
-
-	/** XBOX 360 Right Bumper (Top) */
-	private static final int BUTTON_RB = 6;
-
-	/** XBOX 360 Back Button */
-	private static final int BUTTON_BACK = 7;
-
-	/** XBOX 360 Start Button */
-	private static final int BUTTON_START = 8;
-
-	/** XBOX 360 Left Horizontal Axis (Left=-1, Right=1) */
-	private static final int AXIS_LEFT_X = 1;
-
-	/** XBOX 360 Left Vertical Axis (Up=-1, Down=1) */
-	private static final int AXIS_LEFT_Y = 2;
-
-	/** XBOX 360 Trigger Axis (right - left) */
-	private static final int AXIS_TRIGGERS = 3;
-
-	/**  XBOX 360 Right Horizontal Axis (Left=-1, Right=1) */
-	private static final int AXIS_RIGHT_X = 4;
-
-	/** XBOX 360 Right Vertical Axis (Up=-1, Down=1) */
-	private static final int AXIS_RIGHT_Y = 5;
-
-	/** XBOX 360 Horizontal D-PAD */
-	private static final int AXIS_DPAD_HORIZONTAL = 6;
-
-	private Controller(int port) {
+	public Controller(int port) {
 		joystick = new Joystick(port);
 	}
-	
-	public static Controller controller = new Controller(1);
-	
-
 	/** Returns the value of the trigger with a deadzone. */
 	public static double getTriggerValue(double triggerValue) {
 		return Math.abs(triggerValue) < 0.15 ? 0 : triggerValue;
 	}
 
 	public boolean getDPadLeft() {
-		return this.joystick.getRawAxis(AXIS_DPAD_HORIZONTAL) < -0.5;
+		return this.joystick.getRawAxis(6) < -0.5;
 	}
 
 	public boolean getDPadRight() {
-		return this.joystick.getRawAxis(AXIS_DPAD_HORIZONTAL) > 0.5;
+		return this.joystick.getRawAxis(6) > 0.5;
 	}
 
 	/** Is the left bumper pressed? [top one] */
 	public boolean getLB() {
-		return this.joystick.getRawButton(BUTTON_LB);
+		return this.joystick.getRawButton(5);
 	}
 
 	/** Is the right bumper pressed? [top one] */
 	public boolean getRB() {
-		return this.joystick.getRawButton(BUTTON_RB);
+		return this.joystick.getRawButton(5);
 	}
 
 	public boolean getA() {
-		return this.joystick.getRawButton(BUTTON_A);
+		return this.joystick.getRawButton(1);
 	}
 
 	public boolean getB() {
-		return this.joystick.getRawButton(BUTTON_B);
+		return this.joystick.getRawButton(2);
 	}
 
 	public boolean getX() {
-		return this.joystick.getRawButton(BUTTON_X);
+		return this.joystick.getRawButton(3);
 	}
 
 	public boolean getY() {
-		return this.joystick.getRawButton(BUTTON_Y);
+		return this.joystick.getRawButton(4);
 	}
 
 	public boolean getStart() {
-		return this.joystick.getRawButton(BUTTON_START);
+		return this.joystick.getRawButton(8);
 	}
 
 	public boolean getBack(){
-		return this.joystick.getRawButton(BUTTON_BACK);
+		return this.joystick.getRawButton(7);
 	}
 }
