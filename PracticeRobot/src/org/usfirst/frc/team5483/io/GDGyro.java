@@ -40,4 +40,5 @@ public class GDGyro extends Gyro{
     public void reset() {
         this.reset(90);
     }
+    
 }

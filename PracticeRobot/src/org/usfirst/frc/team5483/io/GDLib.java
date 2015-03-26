@@ -15,7 +15,15 @@ public class GDLib {
 	            return val;
 	        }
 	    }
-	    
+	    public static double squareMaintainSign(double val) {
+	        double output = val * val;
+	        
+	        if(val < 0) {
+	            output = -output;
+	        }
+	        
+	        return output;
+	    }
 	    public static double calcLeftDrive(double x, double y) {
 	        return GDLib.limitValue(y + x);
 	    }

@@ -27,10 +27,10 @@ public class RobotOutput {
 	public boolean dropV;
 	
 	public RobotDrive myRobot;
-	public Talon rearLeft;
-	public Talon rearRight;
-	public Talon frontLeft;/*--------------TODO:create drive setters for auto and stuff----------------------*/
-	public Talon frontRight;
+	public Victor rearLeft;
+	public Victor rearRight;
+	public Victor frontLeft;
+	public Victor frontRight;
 	public double driveOutputSpeed;
 	double leftDriveSpeed;
 	double rightDriveSpeed;
@@ -52,14 +52,16 @@ public class RobotOutput {
 		SmartDashboard.putNumber(driveOutputValueS, driveOutputSpeed);
 		this.driveOutputSpeed = SmartDashboard.getNumber(driveOutputValueS);
 		myRobot.setMaxOutput(driveOutputSpeed);*/
-		this.rearLeft = new Talon (0);
-		this.rearRight = new Talon(1);
-		this.frontLeft = new Talon (2);
-		this.frontRight = new Talon (3);
-		myRobot.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
+		
+		this.rearLeft = new Victor (0);
+		this.rearRight = new Victor(1);
+		this.frontLeft = new Victor (2);
+		this.frontRight = new Victor (3);
+		
+		/*myRobot.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
 		myRobot.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
 		myRobot.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-		myRobot.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		myRobot.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);*/
 		
 		this.squeezeV = false;
 		this.liftV = false;
@@ -67,19 +69,19 @@ public class RobotOutput {
 		this.off = false;
 		this.on = true;
 		
-		/*--------------Lift Solenoid has to be plugged into 0 and 1--------------------*/
+		/*--------------Lift Solenoid has to be plugged into 4 and 5--------------------*/
 		this.liftSolenoid1 = new Solenoid(4);
 		this.liftSolenoid1.set(on);
 		this.liftSolenoid2 = new Solenoid(5);
 		this.liftSolenoid2.set(on);
 		
-		/*--------------Arm Solenoid has to be plugged into 2 and 3---------------------*/
+		/*--------------Arm Solenoid has to be plugged into 0 and 1---------------------*/
 		this.squeezeSolenoid1 = new Solenoid(0);
 		this.squeezeSolenoid1.set(on);
 		this.squeezeSolenoid2 = new Solenoid(1);
 		this.squeezeSolenoid2.set(on);
 		
-		/*--------------Drop Solenoid has to be plugged into 4 and 5--------------------*/
+		/*--------------Drop Solenoid has to be plugged into 2 and 3--------------------*/
 		this.dropSolenoid1 = new Solenoid(2);
 		this.dropSolenoid1.set(on);
 		this.dropSolenoid2 = new Solenoid(3);
@@ -152,4 +154,9 @@ public class RobotOutput {
 	 public double getRightX() {
 	        return this.stick.getRawAxis(4);
 	    }
+
+	public void stopAll() {
+		 this.setLeftDrive(0.0);
+	     this.setRightDrive(0.0);
+	}
 }
